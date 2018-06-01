@@ -5,8 +5,16 @@
     <h:head>
         <title>Facelet Title</title>
     </h:head>
-    <h:body>
-        Hello from Facelets
+    <h:body><h:form>
+            <h:panelGrid columns="2" >
+                <h:outputLabel value="Name: "/>
+                <h:inputText value="#{VendedorCtl.novoVendedor.nome}"/>
+                <h:outputLabel value="Contacto: "/>
+                <h:inputText value="#{VendedorCtl.novoVendedor.contacto}"/>
+                 </h:panelGrid>
+            <h:commandButton value="Save" action="#{VendedorCtl.addNewVendedor()}"/>
+        </h:form>
+
     </h:body>
 </html>
 

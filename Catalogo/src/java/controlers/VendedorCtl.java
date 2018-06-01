@@ -20,10 +20,12 @@ import javax.inject.Named;
 @Named(value = "VendedorCtl")
 @RequestScoped
 public class VendedorCtl {
-    
-     @EJB
+
+    @EJB
     private VendedorBean vb;
     private List<Vendedor> vendedorList = new ArrayList<>();
+
+    private Vendedor novoVendedor = new Vendedor();
 
     //Vendedor x = new Vendedor();
     /**
@@ -43,7 +45,7 @@ public class VendedorCtl {
     /**
      * @return the vendedorList
      */
-    public List<Vendedor> getVendedorList(){
+    public List<Vendedor> getVendedorList() {
         vendedorList = vb.getVendedor();
         return vendedorList;
     }
@@ -54,6 +56,45 @@ public class VendedorCtl {
     public void setVendedorList(List<Vendedor> vendedorList) {
         this.vendedorList = vendedorList;
     }
+
+    public void addNewVendedor() {
+        vb.addVendedor(getNovoVendedor());
+        vendedorList = vb.getVendedor();
+    }
+
+    public void removeVendedor() {
+
+    }
+
+    /**
+     * @return the novoVendedor
+     */
+    public Vendedor getNovoVendedor() {
+        return novoVendedor;
+    }
+
+    /**
+     * @param novoVendedor the novoVendedor to set
+     */
+    public void setNovoVendedor(Vendedor novoVendedor) {
+        this.novoVendedor = novoVendedor;
+    }
+
+    public String checkVendedor() {
+        vendedorList = vb.getVendedor();
+        for (int i = 0; i < vendedorList.size(); i++) {
+            if (vendedorList.get(i).getNome().equals(novoVendedor.getNome())) {
+                return "userPage.xhtml";
+            }
+        }
+        return "reLogin.xhtml";
+    }
     
-    
+    public String addVendedor(){
+        vb.addVendedor(novoVendedor);
+        
+        vendedorList = vb.getVendedor();
+    return "userPage.xhtml";
+    }
+
 }

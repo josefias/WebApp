@@ -29,5 +29,11 @@ public class VendedorBean {
         em.persist(v);
         return (v);
     }
-
+    
+    public List<Vendedor> removeVendedor(Vendedor v){
+        String query = "SELECT v FROM VENDEDOR v WHERE v.nome = :" + v.getNome();
+        return (List<Vendedor>) em.createNativeQuery(query).getResultList();
+    }
+    
+    
 }
