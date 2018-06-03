@@ -1,0 +1,36 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Adicionar Produto</title>
+          <f:metadata> 
+              <f:viewParam name="vendedor" value="#{ExtrasCtl.vende.nome}"/>
+        </f:metadata>
+    </h:head>
+    <h:body>
+          <h3>user is:#{ExtrasCtl.vende.nome}</h3>
+        <h:form>
+        <h:panelGrid columns="2" >
+            <h:outputLabel value="Product ID: "/>
+            <h:inputText value="#{ExtrasCtl.prod.prodid}"/>
+            <h:outputLabel value="Nome: "/>
+            <h:inputText value="#{ExtrasCtl.prod.nome}"/>
+            <h:outputLabel value="Stock: "/>
+            <h:inputText value="#{ExtrasCtl.prod.stock}"/>
+            <h:outputLabel value="Preço: "/>
+            <h:inputText value="#{ExtrasCtl.prod.preco}"/>
+            <h:outputLabel value="Categoria: "/>
+            <h:inputText value="#{ExtrasCtl.prod.categoria}"/>
+            
+            
+        </h:panelGrid>
+        <h:commandButton value="Save"
+                         action="#{ExtrasCtl.addNewProduct()}" >
+                <f:param name="vendedor" value="#{ExtrasCtl.vende.nome}"/></h:commandButton>
+        </h:form>
+
+    </h:body>
+</html>
+

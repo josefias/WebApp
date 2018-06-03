@@ -7,8 +7,10 @@
     </h:head>
     <h:body>
         <h:form>
+            
         <h:commandButton value="vender" action="login"/>
         <h:commandButton value="comprar" action="shop"/>
+        <h:commandButton value="comprar" action="#{VendedorCtl.mostraContacto(produtoCtl.mostraVendedor())}"/>
         </h:form>
     </h:body>
 </html>

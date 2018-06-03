@@ -1,0 +1,81 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Listar Produtos</title>
+    </h:head>
+    <h:body>
+        <h:dataTable value="#{ProductCtl.productList}" var="produto" border="1">
+            <h:column>
+                <f:facet name="header">
+                    <h:outputText value="Product ID"/>
+                </f:facet>
+                <h:outputText value="#{produto.prodid}"/>
+            </h:column>
+            
+            <h:column>
+                <f:facet name="header">
+                    <h:outputText value="Product Name"/>
+                </f:facet>
+                <h:outputText value="#{produto.nome}"/>
+            </h:column>
+            
+            <h:column>
+                <f:facet name="header">
+                    <h:outputText value="Categoria"/>
+                </f:facet>
+                <h:outputText value="#{produto.categoria}"/>
+            </h:column>
+            
+            <h:column>
+                <f:facet name="header">
+                    <h:outputText value="Preco"/>
+                </f:facet>
+                <h:outputText value="#{produto.preco}"/>
+            </h:column>
+            
+        </h:dataTable>
+        
+        
+        
+         <h:form>
+            <h5>Comprar Produto ID:</h5>
+            <h:inputText id="comprarEste"
+                         value= "#{ProductCtl.aux}"
+                         required="true"
+                         requiredMessage="Error: A name is required."
+                         maxlength="25" />
+            <p></p>
+            <h:commandButton id="submit" value="Submit" action="#{ProductCtl.mostraVendedor()}" />
+            <h:commandButton id="reset" value="Reset" type="reset" />
+            
+        </h:form>
+        
+        
+        
+        
+        <!--h:form>
+            <h:panelGrid columns="2" >
+                <h:outputLabel value="Comprar Produto ID:"/>
+                <h:inputText value="#{ProductCtl.prod}"/>
+                <h:outputText value="#{ProductCtl}"/>
+            </h:panelGrid>
+        </h:form-->
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        <h:form>
+            <h:commandButton id="back" value="Back" action="index" />
+        </h:form>
+
+    </h:body>
+</html>
+

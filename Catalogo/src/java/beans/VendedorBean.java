@@ -7,9 +7,10 @@ package beans;
 
 import entity.Vendedor;
 import java.util.List;
-import javax.ejb.Stateless;
+import javax.ejb.*;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -29,11 +30,12 @@ public class VendedorBean {
         em.persist(v);
         return (v);
     }
-    
-    public List<Vendedor> removeVendedor(Vendedor v){
-        String query = "SELECT v FROM VENDEDOR v WHERE v.nome = :" + v.getNome();
-        return (List<Vendedor>) em.createNativeQuery(query).getResultList();
+
+    public void removeVendedorBean(String nome) {
+        Query query = em.createNamedQuery("Vendedor.removeVend");
+        query.setParameter( "remCli", nome);
+        //query.setParameter("vendid",nm);
+        query.executeUpdate();
+        
     }
-    
-    
 }

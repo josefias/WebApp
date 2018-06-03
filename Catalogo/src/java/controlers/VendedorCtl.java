@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
+import javax.faces.context.FacesContext;
 import javax.inject.Named;
 
 /**
@@ -62,9 +63,7 @@ public class VendedorCtl {
         vendedorList = vb.getVendedor();
     }
 
-    public void removeVendedor() {
-
-    }
+  
 
     /**
      * @return the novoVendedor
@@ -89,12 +88,17 @@ public class VendedorCtl {
         }
         return "reLogin.xhtml";
     }
-    
-    public String addVendedor(){
-        vb.addVendedor(novoVendedor);
-        
-        vendedorList = vb.getVendedor();
-    return "userPage.xhtml";
-    }
 
+   
+
+    public String mostraContacto(String nome) {
+        for (int i = 0; i < vendedorList.size(); i++) {
+            if (vendedorList.get(i).getNome().equals(nome)) {
+                novoVendedor = vendedorList.get(i);
+                return "showContacto.xhtml";
+
+            }
+        }
+        return null;
+    }
 }
