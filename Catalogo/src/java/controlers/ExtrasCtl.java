@@ -153,13 +153,13 @@ public class ExtrasCtl {
     }
 
     public String mostraVendedor() {
-        for (int i = 0; i < getProductList().size(); i++) {
-            if (getProductList().get(i).getProdid() == getAux()) {
+        for (int i = 0; i < productList.size(); i++) {
+            if (productList.get(i).getProdid() == aux) {
 
-                setNm(getVendedorList().get(i).getNome());
+                nm = vendedorList.get(i).getNome();
 
                 //setNm(productList.get(i).getNome());
-                return "showVendedorProd.xhmtl";
+                return gotoshowVendedor();
             }
         }
         return "index.xhtml";
@@ -178,8 +178,8 @@ public class ExtrasCtl {
 
                 pb.alterStock(newStock, prod.getProdid()/*, vende.getNome()*/);//atualizar ha lista 
                 //NAO VERIFICA SE PE DO UTILIZADOR
-                vende.setNome(FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("vendedor"));
-                return "userPage.xhmtl";
+                // vende.setNome(FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("vendedor"));
+                return gotoUserPage();
 
             }
         }
@@ -191,11 +191,21 @@ public class ExtrasCtl {
         vendedorList = vb.getVendedor();
         for (int i = 0; i < vendedorList.size(); i++) {
             if (vendedorList.get(i).getNome().equals(vende.getNome())) {
-                
+
                 return "userPage.xhtml";
             }
         }
         return "reLogin.xhtml";
+    }
+
+    public String gotoshowVendedor(){
+        setNm((FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("aux")));
+        return "showVendedorProd.xhmtl";
+    }
+
+    public String gotoUserPage() {
+        vende.setNome(FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("vendedor"));
+        return "userPage.xhtml";
     }
 
     public String gotoDropStock() {
@@ -209,7 +219,7 @@ public class ExtrasCtl {
     }
 
     public void removeVendedor() {
-        pb.removeProdByVend(getVendedorByNome(vende.getNome()));
+        //  pb.removeProdByVend(getVendedorByNome(vende.getNome()));
         vb.removeVendedorBean(vende.getNome());
         vendedorList = vb.getVendedor();
         productList = pb.getProducts();

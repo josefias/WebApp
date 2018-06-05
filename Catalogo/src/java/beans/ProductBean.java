@@ -42,7 +42,7 @@ public class ProductBean {
     
     public void removeProdByVend(Vendedor nome) {
         Query query = em.createNamedQuery("Produto.remByCli");
-        query.setParameter( "vendid", nome);
+        query.setParameter( "vendid", nome.getNome());
         query.executeUpdate();
     }
     // Add business logic below. (Right-click in editor and choose

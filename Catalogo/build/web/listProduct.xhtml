@@ -43,12 +43,13 @@
          <h:form>
             <h5>Comprar Produto ID:</h5>
             <h:inputText id="comprarEste"
-                         value= "#{ProductCtl.aux}"
+                         value= "#{ExtrasCtl.aux}"
                          required="true"
                          requiredMessage="Error: A name is required."
                          maxlength="25" />
             <p></p>
-            <h:commandButton id="submit" value="Submit" action="#{ProductCtl.mostraVendedor()}" />
+            <h:commandButton id="submit" value="Submit" action="#{ExtrasCtl.mostraVendedor()}" >
+                <f:param name="aux" value="#{ExtrasCtl.aux}"/></h:commandButton>
             <h:commandButton id="reset" value="Reset" type="reset" />
             
         </h:form>
